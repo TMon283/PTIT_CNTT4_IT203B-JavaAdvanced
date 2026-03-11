@@ -1,14 +1,45 @@
+# =========================
 # IDE
+# =========================
 .idea/
 .vscode/
+*.iml
 
-# Java
+# =========================
+# Build files
+# =========================
 out/
 target/
-*.class
+build/
 
-# OS
+# Java compiled files
+*.class
+*.jar
+*.war
+*.ear
+
+# =========================
+# Logs
+# =========================
+*.log
+
+# =========================
+# OS files
+# =========================
 .DS_Store
 Thumbs.db
 
-*.iml
+# =========================
+# Git security
+# =========================
+*.pem
+*.key
+id_rsa
+id_rsa.pub
+.ssh/
+
+# =========================
+# Ensure source folders are tracked
+# =========================
+!src/
+!test/
