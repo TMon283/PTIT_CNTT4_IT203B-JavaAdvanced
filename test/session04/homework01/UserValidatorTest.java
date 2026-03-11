@@ -18,6 +18,6 @@ class UserValidatorTest {
 
     @Test
     void TC03_containsWhitespace() {
-        assertFalse(validator.isValidUsername("user name"), "Username chứa khoảng trắng");
+        assertFalse(validator.isValidUsername("user name"), "Username chứa khoảng tr");
     }
 }
