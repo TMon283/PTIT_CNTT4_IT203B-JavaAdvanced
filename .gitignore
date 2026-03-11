@@ -1,13 +1,11 @@
-# Ignore everything
+# ignore everything
 *
 
-# Allow folders
+# allow src and test
 !src/
-!test/
-
-# Allow files inside them
 !src/**
+!test/
 !test/**
 
-# Allow gitignore itself
+# allow gitignore
 !.gitignore
