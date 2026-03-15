@@ -19,7 +19,6 @@ public class Dessert extends MenuItem {
 
     @Override
     public double calculatePrice() {
-        // ví dụ: tráng miệng giảm 5%
         return getBasePrice() * 0.95;
     }
 

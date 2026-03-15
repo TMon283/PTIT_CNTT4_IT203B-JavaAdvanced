@@ -31,7 +31,6 @@ class StatisticServiceTest {
         menuRepository.add(pizza);
         menuRepository.add(chicken);
 
-        // tạo order mẫu
         orderService.createOrder("O01");
 
         try {
