@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Scanner;
 
 // Phần 1: Phân tích
 //- Khi dùng if (rs.next()), con trỏ của ResultSet chỉ di chuyển một lần từ vị trí ban đầu
@@ -15,7 +16,7 @@ import java.sql.ResultSet;
 
 // Phần 2: Thực thi
 public class Main {
-    private static final String URL = "jdbc:mysql://localhost:3306/session11";
+    private static final String URL = "jdbc:mysql://localhost:3306/hospital_db";
     private static final String USER = "root";
     private static final String PASSWORD = "mona32006";
 
@@ -23,18 +24,26 @@ public class Main {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
+        Scanner scanner = new Scanner(System.in);
 
         try {
             conn = DriverManager.getConnection(URL, USER, PASSWORD);
-            String sql = "SELECT name, quantity FROM medicines";
+            String sql = "SELECT * FROM doctors WHERE doctor_code = ? AND password = ?";
             stmt = conn.prepareStatement(sql);
+
+            System.out.print("Nhập mã bác sĩ: ");
+            String doctor_code = scanner.nextLine();
+            System.out.print("Nhập mật khẩu: ");
+            String password = scanner.nextLine();
+            stmt.setString(1, doctor_code);
+            stmt.setString(2, password);
+
             rs = stmt.executeQuery();
 
-            System.out.println("=== Danh mục thuốc trong kho ===");
-            while (rs.next()) {
-                String name = rs.getString("name");
-                int quantity = rs.getInt("quantity");
-                System.out.println("Tên thuốc: " + name + " | Số lượng tồn: " + quantity);
+            if (rs.next()) {
+                System.out.println("Đăng nhập thành công");
+            } else {
+                System.out.println("Đăng nhập thất bại");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -51,3 +60,4 @@ public class Main {
         }
     }
 }
+
