@@ -57,7 +57,6 @@ public class Main {
                 ps.setString(2, receiverId);
                 ResultSet rs = ps.executeQuery();
                 System.out.println("Kết quả sau giao dịch:");
-                System.out.println("--------------------------------------");
                 System.out.printf("%-10s %-20s %-10s%n", "AccountId", "FullName", "Balance");
                 while (rs.next()) {
                     System.out.printf("%-10s %-20s %-10.2f%n",

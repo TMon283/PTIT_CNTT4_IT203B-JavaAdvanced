@@ -59,17 +59,19 @@ public class ReportingDAO {
     }
 
     public BigDecimal calculateCategoryRevenue(String category) {
-        String call = "{? = call FUNC_CalculateCategoryRevenue(?)}";
+        String call = "{call sp_calculateCategoryRevenue(?, ?)}";
         try (Connection con = connectionManager.getConnection();
              CallableStatement callableStatement = con.prepareCall(call)) {
-            callableStatement.registerOutParameter(1, Types.DECIMAL);
-            callableStatement.setString(2, category);
+            callableStatement.setString(1, category);
+            callableStatement.registerOutParameter(2, Types.DECIMAL);
             callableStatement.execute();
-            return callableStatement.getBigDecimal(1);
+            return callableStatement.getBigDecimal(2);
+
         } catch (SQLException e) {
-            throw new DataAccessException("Loi khi goi function tinh doanh thu theo category.", e);
+            throw new DataAccessException("Lỗi khi gọi procedure tính doanh thu theo category.", e);
         }
     }
+
 
     public List<Order> getOrdersWithItems() {
         String sql = "SELECT o.order_id, o.user_id, u.username, o.created_at, " +
